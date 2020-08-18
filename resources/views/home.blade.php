@@ -1,47 +1,33 @@
-@extends('helpers.template')
+@extends('templates.layout')
 
 @section('title_head', 'Home')
 
 @section('content_body')
-    <div class="container" style=".container { background: gray; min-height: 80vh; }">
 
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6">
 
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+                <h1 class="display-4 text-primary">Desarrollo Web</h1>
+                <p class="lead text-secondary">
+                    Somos la gran empresa insurgente, pionera en Iquique con un enfoque directo a llevar a las pymes
+                    hacia el mundo del internet.
+                </p>
+                @auth
+                    <h4> Hello {{ auth()->user()->name }}</h4>
+                @endauth
 
-                        {{ __('You are logged in!') }}
-                    </div>
-
-                    @if(\Illuminate\Support\Facades\Auth::user()->rol == 'Admin')
-                        <div class="card-body">
-                            <a href="{{ route('users-create') }}">Crear Usuario</a>
-                        </div>
-
-                        <div class="card-body">
-                            <a href="{{ route('users-index') }}">Usuarios Activos</a>
-                        </div>
-
-                        <div class="card-body">
-                            <a href="#">Usuarios Removidos</a>
-                        </div>
-
-                    @endif
-
-                    <div class="card-body">
-                        <h4> Hello {{ auth()->user()->email }}</h4>
-                    </div>
-
-
-                </div>
+                <a class="btn btn-lg btn-block btn-primary" href="{{ route('products-index') }}">
+                    Contactanos
+                </a>
+                <a class="btn btn-lg btn-block btn-outline-primary" href="{{ route('products-index') }}">
+                    Portafolio de Productos
+                </a>
+            </div>
+            <div class="col-12 col-lg-6">
+                <img class="img-fluid my-4" src="img/team01.svg" alt="Desarrollo web">
             </div>
         </div>
     </div>
+
 @endsection
